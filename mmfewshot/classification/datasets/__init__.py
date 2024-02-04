@@ -10,10 +10,11 @@ from .mini_imagenet import MiniImageNetDataset
 from .pipelines import LoadImageFromBytes
 from .tiered_imagenet import TieredImageNetDataset
 from .utils import label_wrapper
+from .flower import FlowerDataset
 
 __all__ = [
     'build_dataloader', 'build_dataset', 'DATASETS', 'PIPELINES', 'CUBDataset',
     'LoadImageFromBytes', 'build_meta_test_dataloader', 'MiniImageNetDataset',
     'TieredImageNetDataset', 'label_wrapper', 'BaseFewShotDataset',
-    'EpisodicDataset', 'MetaTestDataset'
+    'EpisodicDataset', 'MetaTestDataset', 'FlowerDataset'
 ]
