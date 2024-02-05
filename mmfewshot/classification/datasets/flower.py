@@ -119,8 +119,7 @@ class FlowerDataset(BaseFewShotDataset):
                         'img_info': {
                             'filename': filename
                         },
-                        'gt_label': gt_label
-                        # np.array(gt_label, dtype=np.int64)
+                        'gt_label': np.array(gt_label, dtype=np.int64)
                     }
                     data_infos.append(info)
-        breakpoint()
+        return data_infos
