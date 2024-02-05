@@ -45,7 +45,7 @@ model = dict(
     inner_lr=0.01,
     first_order=False,
     backbone=dict(type='ResNet12'),
-    head=dict(type='LinearHead', num_classes=17, in_channels=640))
+    head=dict(type='LinearHead', num_classes=5, in_channels=640))
 
 optimizer_config = dict(
     type='GradientCumulativeOptimizerHook', cumulative_iters=8, grad_clip=None)

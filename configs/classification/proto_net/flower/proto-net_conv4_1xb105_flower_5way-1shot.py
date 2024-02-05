@@ -25,8 +25,8 @@ data = dict(
         type='EpisodicDataset',
         num_episodes=100000,
         num_ways=5,
-        num_shots=5,
-        num_queries=16,
+        num_shots=1,
+        num_queries=16, # as we have in total 60 images in training set
         dataset=dict(
             type='FlowerDataset',
             data_prefix='data/flowers',
@@ -36,5 +36,5 @@ data = dict(
 
 model = dict(
     type='ProtoNet',
-    backbone=dict(type='ResNet12'),
+    backbone=dict(type='Conv4'),
     head=dict(type='PrototypeHead'))

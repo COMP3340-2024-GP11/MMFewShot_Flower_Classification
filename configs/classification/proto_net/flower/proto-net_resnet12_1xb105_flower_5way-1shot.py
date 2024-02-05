@@ -25,7 +25,7 @@ data = dict(
         type='EpisodicDataset',
         num_episodes=100000,
         num_ways=5,
-        num_shots=5,
+        num_shots=1,
         num_queries=16,
         dataset=dict(
             type='FlowerDataset',
@@ -36,5 +36,5 @@ data = dict(
 
 model = dict(
     type='ProtoNet',
-    backbone=dict(type='Conv4'),
+    backbone=dict(type='ResNet12'),
     head=dict(type='PrototypeHead'))
