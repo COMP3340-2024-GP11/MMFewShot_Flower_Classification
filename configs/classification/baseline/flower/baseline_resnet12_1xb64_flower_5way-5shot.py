@@ -1,5 +1,5 @@
 _base_ = [
-    '../../_base_/meta_test/flower_meta-test_5way-1shot.py',
+    '../../_base_/meta_test/flower_meta-test_5way-5shot.py',
     '../../_base_/runtime/epoch_based_runtime.py',
     '../../_base_/schedules/sgd_200epoch.py'
 ]
@@ -19,7 +19,7 @@ train_pipeline = [
 ]
 
 meta_finetune_cfg = dict(
-    num_steps=150,
+    num_steps=600,
     optimizer=dict(
         type='SGD', lr=0.01, momentum=0.9, dampening=0.9, weight_decay=0.001))
 

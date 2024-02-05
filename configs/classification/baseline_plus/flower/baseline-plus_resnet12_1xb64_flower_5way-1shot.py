@@ -43,7 +43,15 @@ data = dict(
                 batch_size=4, drop_last=True, train=meta_finetune_cfg))))
 
 model = dict(
-    type='Baseline',
+    type='BaselinePlus',
     backbone=dict(type='ResNet12'),
-    head=dict(type='LinearHead', num_classes=17, in_channels=640),
-    meta_test_head=dict(type='LinearHead', num_classes=5, in_channels=640))
+    head=dict(
+        type='CosineDistanceHead',
+        num_classes=17,
+        in_channels=640,
+        temperature=10.0),
+    meta_test_head=dict(
+        type='CosineDistanceHead',
+        num_classes=5,
+        in_channels=640,
+        temperature=5.0))
