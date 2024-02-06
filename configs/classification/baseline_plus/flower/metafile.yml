@@ -1,0 +1,64 @@
+Collections:
+  - Name: Baseline_Plus
+    Metadata:
+      Training Data: 17Flowers
+      Training Techniques:
+        - SGD with Momentum
+        - Weight Decay
+      Training Resources: 1x V100 GPUs
+    Paper: https://arxiv.org/abs/1904.04232
+    README: configs/classification/baseline_plus/README.md
+
+Models:
+  - Name: baseline-plus_conv4_1xb64_flower_5way-1shot
+    Metadata:
+      Training Data: 17Flowers
+      Epochs: 200
+      Batch Size: 64
+    In Collection: Baseline_Plus
+    Results:
+      - Task: Few Shot Image Classification
+        Dataset: flower
+        Metrics:
+          Accuracy: 51.16
+    Weights: https://download.openmmlab.com/mmfewshot/classification/baseline_plus/flower/baseline-plus_conv4_1xb64_flower_5way-1shot_20211120_100254-55e103d4.pth
+    Config: configs/classification/baseline_plus/flower/baseline-plus_conv4_1xb64_flower_5way-1shot.py
+  - Name: baseline-plus_conv4_1xb64_flower_5way-5shot
+    Metadata:
+      Training Data: flower
+      Epochs: 200
+      Batch Size: 64
+    In Collection: Baseline_Plus
+    Results:
+      - Task: Few Shot Image Classification
+        Dataset: flower
+        Metrics:
+          Accuracy: 67.99
+    Weights: https://download.openmmlab.com/mmfewshot/classification/baseline_plus/flower/baseline-plus_conv4_1xb64_flower_5way-1shot_20211120_100254-55e103d4.pth
+    Config: configs/classification/baseline_plus/flower/baseline-plus_conv4_1xb64_flower_5way-5shot.py
+  - Name: baseline-plus_resnet12_1xb64_flower_5way-1shot
+    Metadata:
+      Training Data: flower
+      Epochs: 200
+      Batch Size: 64
+    In Collection: Baseline_Plus
+    Results:
+      - Task: Few Shot Image Classification
+        Dataset: flower
+        Metrics:
+          Accuracy: 63.25
+    Weights: https://download.openmmlab.com/mmfewshot/classification/baseline_plus/flower/baseline-plus_resnet12_1xb64_flower_5way-1shot_20211120_100254-3c89d8e1.pth
+    Config: configs/classification/baseline_plus/flower/baseline-plus_resnet12_1xb64_flower_5way-1shot.py
+  - Name: baseline-plus_resnet12_1xb64_flower_5way-5shot
+    Metadata:
+      Training Data: flower
+      Epochs: 200
+      Batch Size: 64
+    In Collection: Baseline_Plus
+    Results:
+      - Task: Few Shot Image Classification
+        Dataset: flower
+        Metrics:
+          Accuracy: 81.67
+    Weights: https://download.openmmlab.com/mmfewshot/classification/baseline_plus/flower/baseline-plus_resnet12_1xb64_flower_5way-1shot_20211120_100254-3c89d8e1.pth
+    Config: configs/classification/baseline_plus/flower/baseline-plus_resnet12_1xb64_flower_5way-5shot.py

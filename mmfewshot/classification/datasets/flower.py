@@ -94,13 +94,6 @@ class FlowerDataset(BaseFewShotDataset):
 
     def load_annotations(self) -> List:
         """Load annotation according to the classes subset."""
-        # TODO
-        # img_file_list = {
-        #     class_name: sorted(
-        #         os.listdir(osp.join(self.data_prefix, 'images', class_name)),
-        #         key=lambda x: int(x.split('.')[0].split('_')[-1]))
-        #     for class_name in self.CLASSES
-        # }
         data_infos = []
         for subset_ in self.subset:
             ann_file = osp.join(self.data_prefix, f'meta/{subset_}.txt')

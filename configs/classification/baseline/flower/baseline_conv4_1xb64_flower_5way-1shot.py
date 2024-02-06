@@ -44,6 +44,6 @@ data = dict(
 
 model = dict(
     type='Baseline',
-    backbone=dict(type='ResNet12'),
-    head=dict(type='LinearHead', num_classes=17, in_channels=640),
-    meta_test_head=dict(type='LinearHead', num_classes=5, in_channels=640))
+    backbone=dict(type='Conv4'),
+    head=dict(type='LinearHead', num_classes=17, in_channels=1600),
+    meta_test_head=dict(type='LinearHead', num_classes=5, in_channels=1600))

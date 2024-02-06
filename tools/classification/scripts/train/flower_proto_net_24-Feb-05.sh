@@ -1,0 +1,15 @@
+python ./tools/classification/train.py \
+    ./configs/classification/proto_net/flower/proto-net_conv4_1xb105_flower_5way-1shot.py \
+    --work-dir ./output/proto-net_conv4_1xb105_flower_5way-1shot
+
+python ./tools/classification/train.py \
+    ./configs/classification/proto_net/flower/proto-net_conv4_1xb105_flower_5way-5shot.py \
+    --work-dir ./output/proto-net_conv4_1xb105_flower_5way-5shot
+
+python ./tools/classification/train.py \
+    ./configs/classification/proto_net/flower/proto-net_resnet12_1xb105_flower_5way-1shot.py \
+    --work-dir ./output/proto-net_resnet12_1xb105_flower_5way-1shot
+
+python ./tools/classification/train.py \
+    ./configs/classification/proto_net/flower/proto-net_resnet12_1xb105_flower_5way-5shot.py \
+    --work-dir ./output/proto-net_resnet12_1xb105_flower_5way-5shot
