@@ -49,12 +49,12 @@ for i in range(1,4):
     os.makedirs(out_dir, exist_ok=True)
 
     # Generate meta file for training data
-    train_meta_file = os.path.join(out_dir, "train_meta.txt")
+    train_meta_file = os.path.join(out_dir, "train.txt")
     generate_meta_file(train_indices, train_meta_file)
     # Generate meta file for validation data
-    val_meta_file = os.path.join(out_dir, "val_meta.txt")
+    val_meta_file = os.path.join(out_dir, "val.txt")
     generate_meta_file(val_indices, val_meta_file)
     # Generate meta file for test data
-    test_meta_file = os.path.join(out_dir, "test_meta.txt")
+    test_meta_file = os.path.join(out_dir, "test.txt")
     generate_meta_file(test_indices, test_meta_file)
 
