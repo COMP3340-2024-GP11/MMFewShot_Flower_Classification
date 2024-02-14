@@ -7,15 +7,15 @@ import scipy.io
 parser = argparse.ArgumentParser(description='Create dataset split.')
 parser.add_argument('--data-dir', type=str, 
                     help='Path to the data directory',
-                    default="/userhome/cs2/xinjiayi/mmfewshot/data/flowers"
+                    default="data/flowers"
                    )
 parser.add_argument('--meta-dir', type=str, 
                     help='Path to the meta-data directory, which contains the split information',
-                    default="/userhome/cs2/xinjiayi/mmfewshot/data/flowers/meta"
+                    default="data/flowers/meta"
                    )
 parser.add_argument('--split-pth', type=str, 
                     help='Path to the split file',
-                   default="/userhome/cs2/xinjiayi/mmfewshot/data/flowers/meta/datasplits.mat")
+                   default="data/flowers/meta/datasplits.mat")
 args = parser.parse_args()
 
 # Define the paths
@@ -31,7 +31,8 @@ def generate_meta_file(split_indices, meta_file_path):
         for idx in split_indices:
             class_number = (idx - 1) // 80
             file_name = f'image_{str(idx).zfill(4)}.jpg'
-            image_path = f"{dataset_dir}/" + file_name
+            # image_path = f"{dataset_dir}/" + file_name
+            image_path = file_name
             line = f"{image_path} {class_number}\n"
             meta_file.write(line)
 
