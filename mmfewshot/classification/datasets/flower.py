@@ -96,7 +96,7 @@ class FlowerDataset(BaseFewShotDataset):
         """Load annotation according to the classes subset."""
         data_infos = []
         for subset_ in self.subset:
-            ann_file = osp.join(self.data_prefix, f'meta/{subset_}.txt')
+            ann_file = osp.join(self.data_prefix, f'{subset_}.txt')
             assert osp.exists(ann_file), \
                 f'Please download ann_file through {self.resource}.'
             with open(ann_file) as f:
