@@ -30,18 +30,21 @@ class FlowerDataset(BaseFewShotDataset):
             only one subset data will be loaded. If subset is a list of
             string, then all data of subset in list will be loaded.
             Options: ['train', 'val', 'test']. Default: 'train'.
+        split_num (str| list[str]): The split used for model training. Default: "split1".
     """
 
-    resource = 'https://www.robots.ox.ac.uk/~vgg/data/flowers/17/17flowers.tgz'
+    # resource = 'https://www.robots.ox.ac.uk/~vgg/data/flowers/17/17flowers.tgz'
     ALL_CLASSES = ALL_CLASSES
 
     def __init__(self,
                  classes_id_seed: int = None,
                  subset: Literal['train', 'test', 'val'] = 'train',
+                 split_num: Literal['split1', 'split2', 'split3'] = 'split1',
                  *args,
                  **kwargs) -> None:
         self.classes_id_seed = classes_id_seed
         self.num_all_classes = len(self.ALL_CLASSES)
+        self.split_num = split_num
 
         if isinstance(subset, str):
             subset = [subset]
@@ -96,7 +99,7 @@ class FlowerDataset(BaseFewShotDataset):
         """Load annotation according to the classes subset."""
         data_infos = []
         for subset_ in self.subset:
-            ann_file = osp.join(self.data_prefix, f'meta/{subset_}.txt')
+            ann_file = osp.join(self.data_prefix, f'meta/{self.split_num}/{subset_}.txt')
             assert osp.exists(ann_file), \
                 f'Please download ann_file through {self.resource}.'
             with open(ann_file) as f:
@@ -105,7 +108,6 @@ class FlowerDataset(BaseFewShotDataset):
                     if i == 0:
                         continue
                     filename, class_name = line.strip().split(' ')
-                    filename = filename.split('/')[1]
                     gt_label = int(class_name)
                     info = {
                         'img_prefix':self.data_prefix,
