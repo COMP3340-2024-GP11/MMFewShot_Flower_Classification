@@ -1,6 +1,12 @@
+"""
+Evaluate the validation accuarcy of all models in the ./output directory
+TODO: output a pandas dataframe contain mean+-std.
+"""
+
 import os
 import re
 import argparse
+# import pandas as pd
 
 # Create an argument parser
 parser = argparse.ArgumentParser(description='Parse log files and extract final mean accuracy.')
@@ -21,7 +27,7 @@ for subdir in os.listdir(output_dir):
     
                     # Iterate over lines in reverse order until the first line that matches the pattern
                     for line in reversed(log_content):
-                        match = re.search(r'Epoch\(val\) \[\d+\]\[\d+\]\s+accuracy_mean: ([\d.]+)', line)
+                        match = re.search(r'accuracy_mean: ([\d.]+)', line)
                         if match:
                             final_accuracy = match.group(1)
                             print(f"Model: {subdir}, Final Mean Accuracy: {final_accuracy}")

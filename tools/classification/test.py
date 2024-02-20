@@ -26,6 +26,7 @@ def parse_args():
     parser.add_argument('config', help='test config file path')
     parser.add_argument('checkpoint', help='checkpoint file')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
+    parser.add_argument('--train-cfg', help='the path to saved train config')
     parser.add_argument(
         '--metrics',
         type=str,
@@ -101,6 +102,7 @@ def main():
     args = parse_args()
 
     cfg = mmcv.Config.fromfile(args.config)
+    train_cfg = mmcv.Config.fromfile(args.train_cfg)
     if args.options is not None:
         cfg.merge_from_dict(args.options)
     # set cudnn_benchmark
@@ -137,7 +139,7 @@ def main():
     # init the logger before other steps
     timestamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
     log_file = osp.join(cfg.work_dir, f'{timestamp}_test.log')
-    logger = get_root_logger(log_file=log_file, log_level=cfg.log_level)
+    logger = get_root_logger(log_file=log_file, log_level=train_cfg.log_level)
 
     # set random seeds
     if args.seed is None:
@@ -152,7 +154,7 @@ def main():
      all_data_loader) = build_meta_test_dataloader(dataset, meta_test_cfg)
 
     # build the model and load checkpoint
-    model = build_classifier(cfg.model)
+    model = build_classifier(train_cfg.model)
     fp16_cfg = cfg.get('fp16', None)
     if fp16_cfg is not None:
         wrap_fp16_model(model)
@@ -172,7 +174,7 @@ def main():
             all_data_loader,
             meta_test_cfg=meta_test_cfg,
             logger=logger,
-            eval_kwargs=dict(metric=cfg.evaluation.metric),
+            eval_kwargs=dict(metric=train_cfg.evaluation.metric),
             show_task_results=args.show_task_results)
     else:
         model = MMDistributedDataParallel(
@@ -187,7 +189,7 @@ def main():
             all_data_loader,
             meta_test_cfg=meta_test_cfg,
             logger=logger,
-            eval_kwargs=dict(metric=cfg.evaluation.metric),
+            eval_kwargs=dict(metric=train_cfg.evaluation.metric),
             show_task_results=args.show_task_results)
 
     if rank == 0:
