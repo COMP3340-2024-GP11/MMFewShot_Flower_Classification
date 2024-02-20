@@ -1,6 +1,12 @@
+"""
+Evaluate the validation accuarcy of all models in the ./output directory
+TODO: output a pandas dataframe contain mean+-std.
+"""
+
 import os
 import re
 import argparse
+# import pandas as pd
 
 # Create an argument parser
 parser = argparse.ArgumentParser(description='Parse log files and extract final mean accuracy.')

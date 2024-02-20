@@ -41,10 +41,10 @@ def main():
     
     base_str = 'python ./tools/classification/test.py '
     test_config_str = f'./configs/classification/_base_/meta_test/{config_fn}.py '
-    train_config_str = f'--train-cfg ./configs/classification/baseline/flower/{ckpt_fn}.py '
     metrics_str = '--metrics "accuracy", "precision", "recall", "f1_score" '
     
     for split in ['split1', 'split2', 'split3']: 
+        train_config_str = f'--train-cfg ./output/{ckpt_fn}_{split}/{ckpt_fn}.py '
         work_dir = f"./test_output/{ckpt_fn}_{split}_{ckpt_choice}"
         work_dir_str = f"--work-dir {work_dir} "
         checkpoint_str = f'./output/{ckpt_fn}_{split}/{ckpt_choice}.pth '
