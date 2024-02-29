@@ -1,13 +1,13 @@
-import mmcv
-import numpy as np
-
-from mmcls.datasets.builder import DATASETS
-from .base import BaseFewShotDataset
-
 import os
 import os.path as osp
 from typing import List, Optional, Sequence, Union
 from typing_extensions import Literal
+
+import mmcv
+import numpy as np
+from mmcls.datasets.builder import DATASETS
+
+from .base import BaseFewShotDataset
 
 ALL_CLASSES = list(range(17))
 
@@ -15,8 +15,12 @@ ALL_CLASSES_NAME = [
     'daffodil', 'snowdrop', 'lilyValley', 'bluebell', 'crocys', 'iris', 
     'tigerlily', 'tulip', 'fritillary', 'sunflower', 'daisy', 'colts foot', 
     'dandelion', 'cowslip', 'buttercup', 'wind flower', 'pansy'
-    ]
+]
 
+# Class split: first 7 as train, 8-12 as val, 13-17 as test
+TRAIN_CLASSES, VAL_CLASSES, TEST_CLASSES = ALL_CLASSES[:7], ALL_CLASSES[7:12], ALL_CLASSES[12:]
+TRAIN_CLASSES_NAME, VAL_CLASSES_NAME, TEST_CLASSES_NAME = ALL_CLASSES_NAME[:7], ALL_CLASSES_NAME[7:12], ALL_CLASSES_NAME[12:]
+ 
 @DATASETS.register_module()
 class FlowerDataset(BaseFewShotDataset):
     """Oxford 17 flower dataset for few shot classification.
@@ -34,7 +38,9 @@ class FlowerDataset(BaseFewShotDataset):
     """
 
     # resource = 'https://www.robots.ox.ac.uk/~vgg/data/flowers/17/17flowers.tgz'
-    ALL_CLASSES = ALL_CLASSES
+    TRAIN_CLASSES = TRAIN_CLASSES
+    VAL_CLASSES = VAL_CLASSES
+    TEST_CLASSES = TEST_CLASSES
 
     def __init__(self,
                  classes_id_seed: int = None,
@@ -43,7 +49,6 @@ class FlowerDataset(BaseFewShotDataset):
                  *args,
                  **kwargs) -> None:
         self.classes_id_seed = classes_id_seed
-        self.num_all_classes = len(self.ALL_CLASSES)
         self.split_num = split_num
 
         if isinstance(subset, str):
@@ -78,11 +83,11 @@ class FlowerDataset(BaseFewShotDataset):
             class_names = []
             for subset_ in self.subset:
                 if subset_ == 'train':
-                    class_names = self.ALL_CLASSES
+                    class_names += self.TRAIN_CLASSES
                 elif subset_ == 'val':
-                    class_names = self.ALL_CLASSES
+                    class_names += self.VAL_CLASSES
                 elif subset_ == 'test':
-                    class_names = self.ALL_CLASSES
+                    class_names += self.TEST_CLASSES
                 else:
                     raise ValueError(f'invalid subset {subset_} only '
                                      f'support train, val or test.')
@@ -104,9 +109,6 @@ class FlowerDataset(BaseFewShotDataset):
                 f'Please download ann_file through {self.resource}.'
             with open(ann_file) as f:
                 for i, line in enumerate(f):
-                    # skip file head
-                    if i == 0:
-                        continue
                     filename, class_name = line.strip().split(' ')
                     gt_label = int(class_name)
                     info = {
