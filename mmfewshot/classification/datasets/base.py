@@ -46,7 +46,7 @@ class BaseFewShotDataset(Dataset, metaclass=ABCMeta):
 
         # build a look up dict for sampling instances by class id
         self.data_infos_class_dict = {i: [] for i in range(len(self.CLASSES))}
-        for idx, data_info in enumerate(self.data_infos):
+        for idx, data_info in enumerate(self.data_infos):        
             self.data_infos_class_dict[data_info['gt_label'].item()].append(
                 idx)
 

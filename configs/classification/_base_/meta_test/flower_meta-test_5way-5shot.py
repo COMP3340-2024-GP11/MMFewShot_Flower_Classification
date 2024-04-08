@@ -12,9 +12,9 @@ test_pipeline = [
 
 num_ways = 5
 num_shots = 5
-num_queries = 5 # 15
-num_val_episodes = 20 # 100
-num_test_episodes = 200 # 2000
+num_queries = 15
+num_val_episodes = 100
+num_test_episodes = 2000
 
 data = dict(
     val=dict(
@@ -34,7 +34,7 @@ data = dict(
             # whether to cache features in fixed-backbone methods for
             # testing acceleration.
             fast_test=False,
-            test_set=dict(batch_size=16, num_workers=2),
+            test_set=dict(batch_size=16, num_workers=4),
             # worker initialization is a time consuming operation
             support=dict(batch_size=num_ways * num_shots, num_workers=0),
             query=dict(batch_size=num_ways * num_queries, num_workers=0))),
@@ -57,7 +57,7 @@ data = dict(
             # whether to cache features in fixed-backbone methods for
             # testing acceleration.
             fast_test=False,
-            test_set=dict(batch_size=16, num_workers=2),
+            test_set=dict(batch_size=16, num_workers=4),
             # worker initialization for each task is a time consuming operation
             support=dict(batch_size=num_ways * num_shots, num_workers=0),
             query=dict(batch_size=num_ways * num_queries, num_workers=0))))

@@ -1,15 +1,16 @@
+"""Flower class."""
 import os
 import os.path as osp
 from typing import List, Optional, Sequence, Union
-from typing_extensions import Literal
 
 import mmcv
 import numpy as np
 from mmcls.datasets.builder import DATASETS
+from typing_extensions import Literal
 
 from .base import BaseFewShotDataset
 
-ALL_CLASSES = list(range(17))
+ALL_CLASSES = [int(cls) for cls in range(17)]
 
 ALL_CLASSES_NAME = [
     'daffodil', 'snowdrop', 'lilyValley', 'bluebell', 'crocys', 'iris', 
@@ -34,7 +35,6 @@ class FlowerDataset(BaseFewShotDataset):
             only one subset data will be loaded. If subset is a list of
             string, then all data of subset in list will be loaded.
             Options: ['train', 'val', 'test']. Default: 'train'.
-        split_num (str| list[str]): The split used for model training. Default: "split1".
     """
 
     # resource = 'https://www.robots.ox.ac.uk/~vgg/data/flowers/17/17flowers.tgz'
@@ -45,11 +45,9 @@ class FlowerDataset(BaseFewShotDataset):
     def __init__(self,
                  classes_id_seed: int = None,
                  subset: Literal['train', 'test', 'val'] = 'train',
-                 split_num: Literal['split1', 'split2', 'split3'] = 'split1',
                  *args,
                  **kwargs) -> None:
         self.classes_id_seed = classes_id_seed
-        self.split_num = split_num
 
         if isinstance(subset, str):
             subset = [subset]
@@ -83,11 +81,11 @@ class FlowerDataset(BaseFewShotDataset):
             class_names = []
             for subset_ in self.subset:
                 if subset_ == 'train':
-                    class_names += self.TRAIN_CLASSES
+                    class_names += TRAIN_CLASSES
                 elif subset_ == 'val':
-                    class_names += self.VAL_CLASSES
+                    class_names += VAL_CLASSES
                 elif subset_ == 'test':
-                    class_names += self.TEST_CLASSES
+                    class_names += TEST_CLASSES
                 else:
                     raise ValueError(f'invalid subset {subset_} only '
                                      f'support train, val or test.')
@@ -104,7 +102,7 @@ class FlowerDataset(BaseFewShotDataset):
         """Load annotation according to the classes subset."""
         data_infos = []
         for subset_ in self.subset:
-            ann_file = osp.join(self.data_prefix, f'meta/{self.split_num}/{subset_}.txt')
+            ann_file = osp.join(self.data_prefix, f'meta/{subset_}.txt')
             assert osp.exists(ann_file), \
                 f'Please download ann_file through {self.resource}.'
             with open(ann_file) as f:

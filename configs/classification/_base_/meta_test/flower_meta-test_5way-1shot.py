@@ -12,8 +12,8 @@ test_pipeline = [
 
 num_ways = 5
 num_shots = 1
-num_queries = 5 # 15
-num_val_episodes = 20 # 100
+num_queries = 15
+num_val_episodes = 100
 num_test_episodes = 2000
 
 data = dict(
