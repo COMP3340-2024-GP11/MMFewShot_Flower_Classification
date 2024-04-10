@@ -43,20 +43,22 @@ def main():
     test_config_str = f'./configs/classification/_base_/meta_test/{config_fn}.py '
     metrics_str = '--metrics "accuracy", "precision", "recall", "f1_score" '
     
-    for split in ['split1', 'split2', 'split3']: 
-        train_config_str = f'--train-cfg ./output/{ckpt_fn}_{split}/{ckpt_fn}.py '
-        work_dir = f"./test_output/{ckpt_fn}_{split}_{ckpt_choice}"
-        work_dir_str = f"--work-dir {work_dir} "
-        checkpoint_str = f'./output/{ckpt_fn}_{split}/{ckpt_choice}.pth '
-        if os.path.isdir(work_dir) or (not(os.path.isfile(checkpoint_str.strip()))):
-            pass
-        else:
-            option_str = f'--options data.val.split_num={split}, data.test.dataset.split_num={split} '
-    
-            cmd = (base_str + test_config_str + checkpoint_str + train_config_str 
-                  + work_dir_str + option_str + metrics_str)
-    
-            subprocess.run(cmd, shell=True)   
+    # for split in ['split1', 'split2', 'split3']: 
+    train_config_str = f'--train-cfg ./output/{ckpt_fn}/{ckpt_fn}.py '
+    work_dir = f"./test_output/{ckpt_fn}_{ckpt_choice}"
+    work_dir_str = f"--work-dir {work_dir} "
+    checkpoint_str = f'./output/{ckpt_fn}/{ckpt_choice}.pth '
+    if os.path.isdir(work_dir) or (not(os.path.isfile(checkpoint_str.strip()))):
+        pass
+    else:
+        # option_str = f'--options data.val.split_num={split}, data.test.dataset.split_num={split} '
+
+        cmd = (base_str + test_config_str + checkpoint_str + train_config_str 
+                + work_dir_str 
+                # + option_str 
+                + metrics_str)
+
+        subprocess.run(cmd, shell=True)   
 
 if __name__ == '__main__':
     main()

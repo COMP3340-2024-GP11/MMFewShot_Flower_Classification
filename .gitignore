@@ -104,20 +104,18 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-/data/
-/data
-.vscode
-.idea
-.DS_Store
-test_output/
-
 # custom
 *.pkl
 *.pkl.json
 *.log.json
-work_dirs/
 mmfewshot/.mim
+.vscode
+.idea
+.DS_Store
+data/
+checkpoints/
 output/
+test_output/
 
 # Pytorch
 *.pth
