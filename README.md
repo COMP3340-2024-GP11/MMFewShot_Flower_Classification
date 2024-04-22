@@ -1,30 +1,9 @@
-<div align="center">
-  <img src="resources/mmfewshot-logo.png" width="500"/>
-  <div>&nbsp;</div>
-  <div align="center">
-    <b><font size="5">OpenMMLab website</font></b>
-    <sup>
-      <a href="https://openmmlab.com">
-        <i><font size="4">HOT</font></i>
-      </a>
-    </sup>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <b><font size="5">OpenMMLab platform</font></b>
-    <sup>
-      <a href="https://platform.openmmlab.com">
-        <i><font size="4">TRY IT OUT</font></i>
-      </a>
-    </sup>
-  </div>
-  <div>&nbsp;</div>
-</div>
-
-# COMP3340 Group 10 Project ReadMe
+# COMP3340 Group 10 - Few Shot Learning
 
 ## Contact
 - This repository contains code for Few Shot Learning on Oxford 17 Dataset
 - For any question and enquiry, please feel free to reach out to Jiayi Xin (xinjiayi@connect.hku.hk)
-Thanks and enjoy =P
+- Thanks and enjoy =P
 
 ## Overview
 **Prerequisite for Reproduction**
@@ -53,15 +32,19 @@ One model training typically takes 6-7 hours to run with one NVIDIA GeForce RTX 
 
 **Step 1. Create virtual environment using anaconda**
 
-- `conda create -n open-mmlab python=3.8 -y`
-- `conda activate open-mmlab`
+```
+conda create -n open-mmlab python=3.8 -y
+conda activate open-mmlab
+```
 
 *Please make sure that you are create a virtual env with python version 3.8*
 
 **Step 2 Install Pytorch from wheel**
 
-- `wget https://download.pytorch.org/whl/cu110/torch-1.7.1%2Bcu110-cp38-cp38-linux_x86_64.whl#sha256=709cec07bb34735bcf49ad1d631e4d90d29fa56fe23ac9768089c854367a1ac9`
-- `pip install torch-1.7.1+cu110-cp38-cp38-linux_x86_64.whl`
+```
+wget https://download.pytorch.org/whl/cu110/torch-1.7.1%2Bcu110-cp38-cp38-linux_x86_64.whl#sha256=709cec07bb34735bcf49ad1d631e4d90d29fa56fe23ac9768089c854367a1ac9
+pip install torch-1.7.1+cu110-cp38-cp38-linux_x86_64.whl
+```
 
 *Please double check that you install the correct version of pytorch using the following command*
 
@@ -122,11 +105,11 @@ pip install mmcv-full==1.3.14 -f https://download.openmmlab.com/mmcv/dist/cu110/
   - *Please install mmfewshot==0.1.0*
   - [mmfewshot/docs/en/install.md at main · open-mmlab/mmfewshot (github.com)](https://github.com/open-mmlab/mmfewshot/blob/main/docs/en/install.md)
 
-## Download data & checkpoints <a id="downloads"/>
+## Download data & checkpoints<a id="downloads"/>
 
 [OneDrive Download Link](https://hku.hk)
 
-## Commands to reproduce results <a id="cmd_repro"/>
+## Commands to reproduce results<a id="cmd_repro"/>
 
 ### Train model command
 
@@ -142,6 +125,28 @@ To be continued...
 
 
 ---  
+
+<div align="center">
+  <img src="resources/mmfewshot-logo.png" width="500"/>
+  <div>&nbsp;</div>
+  <div align="center">
+    <b><font size="5">OpenMMLab website</font></b>
+    <sup>
+      <a href="https://openmmlab.com">
+        <i><font size="4">HOT</font></i>
+      </a>
+    </sup>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <b><font size="5">OpenMMLab platform</font></b>
+    <sup>
+      <a href="https://platform.openmmlab.com">
+        <i><font size="4">TRY IT OUT</font></i>
+      </a>
+    </sup>
+  </div>
+  <div>&nbsp;</div>
+</div>
+
 <div align="center">
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mmfewshot)](https://pypi.org/project/mmfewshot/)
 [![PyPI](https://img.shields.io/pypi/v/mmfewshot)](https://pypi.org/project/mmfewshot)
