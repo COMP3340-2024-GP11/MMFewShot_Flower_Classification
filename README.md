@@ -145,22 +145,18 @@ To be continued...
     </sup>
   </div>
   <div>&nbsp;</div>
-</div>
-
-<div align="center">
+  
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mmfewshot)](https://pypi.org/project/mmfewshot/)
 [![PyPI](https://img.shields.io/pypi/v/mmfewshot)](https://pypi.org/project/mmfewshot)
 [![docs](https://img.shields.io/badge/docs-latest-blue)](https://mmfewshot.readthedocs.io/en/latest/)
 [![badge](https://github.com/open-mmlab/mmfewshot/workflows/build/badge.svg)](https://github.com/open-mmlab/mmfewshot/actions)
 [![codecov](https://codecov.io/gh/open-mmlab/mmfewshot/branch/master/graph/badge.svg)](https://codecov.io/gh/open-mmlab/mmfewshot)
 [![license](https://img.shields.io/github/license/open-mmlab/mmfewshot.svg)](https://github.com/open-mmlab/mmfewshot/blob/master/LICENSE)
-
 [📘Documentation](https://mmfewshot.readthedocs.io/) |
 [🛠️Installation](https://mmfewshot.readthedocs.io/en/latest/install.html) |
 [👀Model Zoo](https://mmfewshot.readthedocs.io/en/latest/model_zoo.html) |
 [🆕Update News](https://mmfewshot.readthedocs.io/en/latest/changelog.html) |
 [🤔Reporting Issues](https://github.com/open-mmlab/mmfewshot/issues/new/choose)
-
 </div>
 
 <div align="center">
