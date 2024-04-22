@@ -18,6 +18,26 @@
   </div>
   <div>&nbsp;</div>
 
+# COMP3340 Group 10 Project ReadMe
+
+## Contact
+- This repository contains code for Few Shot Learning on Oxford 17 Dataset
+- For any question and enquiry, please feel free to reach out to Jiayi Xin (xinjiayi@connect.hku.hk). Thanks and enjoy =P
+
+## Overview
+1. [Set up the mmfewshot conda environment](#env_setup)
+2. [Download data and checkpoint files and put them under the correct folder](#downloads)
+3. [Run the commands to reproduce all the important results](#cmd_repro)
+
+## Environment setup <a id="env_setup"/>·
+
+## Download data & checkpoints <a id="downloads"/>
+
+## Commands to reproduce results <a id="cmd_repro"/>
+
+
+---  
+
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mmfewshot)](https://pypi.org/project/mmfewshot/)
 [![PyPI](https://img.shields.io/pypi/v/mmfewshot)](https://pypi.org/project/mmfewshot)
 [![docs](https://img.shields.io/badge/docs-latest-blue)](https://mmfewshot.readthedocs.io/en/latest/)
