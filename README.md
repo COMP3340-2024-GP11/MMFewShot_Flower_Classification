@@ -128,7 +128,7 @@ pip install mmcv-full==1.3.14 -f https://download.openmmlab.com/mmcv/dist/cu110/
 ### Folder structure after unzip
 
 ```
-COMP3340-GP10-FewShowLearning
+COMP3340-GP10-FewShotLearning
 |____FSL_branch_add_flower_dataset_jx
 | |____data
 | |____output
@@ -143,24 +143,25 @@ COMP3340-GP10-FewShowLearning
 ### Where to place data & checkpoints
 Please put the subfolders under code folder of the the corresponding branch.
 
-- For branch `main`use the three subfolders under `COMP3340-GP10-FewShowLearning/FSL_branch_main`:
+- For branch `main`use the three subfolders under `COMP3340-GP10-FewShotLearning/FSL_branch_main`:
 ```
-FSL_main_branch
+MMFewShot_Flower_Classification-main
 | |____data
 | |____output
 | |____test_output
 | |____ ...
 ```
 
-For branch `add-flower-dataset-jx` use the three subfolders under `COMP3340-GP10-FewShowLearning/FSL_branch_add_flower_dataset_jx`:
+For branch `add-flower-dataset-jx` use the three subfolders under `COMP3340-GP10-FewShotLearning/FSL_branch_add_flower_dataset_jx`:
 ```
-FSL-add-flower-dataset-jx
+MMFewShot_Flower_Classification-add-flower-dataset-jx
 | |____data 
 | |____output 
 | |____test_output 
 | |____ ...
 ```
-
+- Example:
+  - ![folder structure](./figures/folder_structure.png)
 
 ---
 
@@ -177,7 +178,7 @@ FSL-add-flower-dataset-jx
 
 - Reproduce midterm report Table 5
   - ![Group 10 midterm report Table 5](./figures/FSL_midterm_appendix_Table5.png)
-  - To avoid running the testing (takes several hours on a single GPU), you can simply check the logs under ./test_output
+  - To avoid running the testing (takes several hours on a single GPU), you can simply check the logs under `./test_output`
     - ![example test_output log](./figures/test_output_log.png)
 
 - If you insist to train and test the FSL models, you can refer to example commands listed in [the following section](#aft_midterm).
