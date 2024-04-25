@@ -113,9 +113,8 @@ pip install mmcv-full==1.3.14 -f https://download.openmmlab.com/mmcv/dist/cu110/
   - `mim install mmcls`
 
 - **Install MMFewshot**
-  - Download the code zip from [OneDrive Link for Code](TODO) (The zipped code is slso included in the Moodle submission)
-    - There are two code folders in the unzipped folder corresponding to two branches on GitHub: `main` and `add-flower-dataset-jx`
-    - Go to any of the two folder, e.g., `cd <mmfewshot-main>`
+  - There are two code folders in `MMFewShot.zip` corresponding to two branches on GitHub: `main` and `add-flower-dataset-jx`
+    - Go to any of the two folder, e.g., `cd MMFewShot_Flower_Classification-main`
     - `pip install -v -e .`
     - In the `open-mmlab` environment, enter `python` to open interactive python terminal and enter `import mmfewshot; mmfewshot.__version__`. If there is no error and you see `0.1.0`, then installation is successful.
       - ![check mmfewshot and mmdet in open-mmlab environment](./figures/check_mmfewshot.png)
