@@ -116,6 +116,7 @@ data/
 checkpoints/
 output/
 test_output/
+work_dirs/
 
 # Pytorch
 *.pth
