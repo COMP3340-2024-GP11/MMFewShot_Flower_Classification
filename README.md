@@ -5,6 +5,8 @@
 - For any question and enquiry, please feel free to reach out to Jiayi Xin (xinjiayi@connect.hku.hk)
 - Thanks and enjoy =P
 
+---
+
 ## Overview
 **Prerequisite for Reproduction**
 1. [Set up conda environment](#env_setup)
@@ -13,18 +15,19 @@
 
 **Software, Hardware & System Requirements**
 - Software
-  - Set up environment as [following](#env_setup)
   - python==3.8.18
   - mmfewshot==0.1.0
   - mmdet==2.17.0
   - mmcv==1.3.14
+  - mmcls==0.15.0
+  - Please also refer to mmfewshot_software_requirements.txt if you have any questions (However, please **do follow [Set up conda environment](#env_setup) step-by-step** to ensure correct software environment setup)
 - Hardware
   - Experiments are conducted on one NVIDIA GeForce RTX 2080 Ti
 - System
   - Linux
+  - One model training typically takes 6-7 hours to run with one NVIDIA GeForce RTX 2080 Ti.
 
-**Note**
-One model training typically takes 6-7 hours to run with one NVIDIA GeForce RTX 2080 Ti.
+---
 
 ## Environment setup <a id="env_setup"/>
 
@@ -48,7 +51,7 @@ pip install torch-1.7.1+cu110-cp38-cp38-linux_x86_64.whl
 
 *Please double check that you install the correct version of pytorch using the following command*
 
-![Output if correct pytorch version is installed](./check_torch.png)
+![Output if correct pytorch version is installed](./figures/check_torch.png)
 
 **Step 3 Install cudatoolkit via conda-forge channel**
 
@@ -99,40 +102,135 @@ pip install mmcv-full==1.3.14 -f https://download.openmmlab.com/mmcv/dist/cu110/
   - [GitHub - open-mmlab/mmdetection: OpenMMLab Detection Toolbox and Benchmark](https://github.com/open-mmlab/mmdetection)
   - *Please install mmdet==2.17.0*
   - Need to be compatible with current mmcv versoin --> go to the realease page of mmdetection and download the zip of the code of tha version
-  - [Releases · open-mmlab/mmdetection (github.com)](https://github.com/open-mmlab/mmdetection/releases?page=4)
+    1. Go to the following mmdet release page: [Releases · open-mmlab/mmdetection (github.com)](https://github.com/open-mmlab/mmdetection/releases?page=4)
+    2. `wget https://github.com/open-mmlab/mmdetection/archive/refs/tags/v2.17.0.zip` 
+    3. Unzip the file and install `mmdet==2.17.0`
+    4. In the `open-mmlab` environment, enter `python` to open interactive python terminal and enter `import mmdet; mmdet.__version__`. If there is no error and you see `mmdet==2.17.0`, then installation is successful.
+  
+- **Install MMClassification**
+  - *Please install mmcls==0.15.0*
+  - `pip install openmim`
+  - `mim install mmcls`
+
 - **Install MMFewshot**
-  - *Please install mmdet==2.17.0 before installing mmfewshot*
-  - *Please install mmfewshot==0.1.0*
-  - [mmfewshot/docs/en/install.md at main · open-mmlab/mmfewshot (github.com)](https://github.com/open-mmlab/mmfewshot/blob/main/docs/en/install.md)
+  - Download the code zip from [OneDrive Link for Code](TODO)
+    - There are two code folders in the unzipped folder: `FSL_main` and `FSL_add_flower`
+    - `cd FSL_main`
+    - `pip install -v -e .`
+
+---
 
 ## Download data & checkpoints<a id="downloads"/>
 
-[OneDrive Download Link](https://hku.hk)
+[OneDrive Download Link](TODO)
+
+### Folder structure after unzip
+
+```
+COMP3340-GP10-FewShowLearning
+|____FSL_branch_add_flower_dataset_jx
+| |____data
+| |____output
+| |____test_output
+|____FSL_branch_main
+| |____data
+| |____output
+| |____test_output
+
+```
+
+### Where to place data & checkpoints
+Please put the subfolders under code folder of the the corresponding branch.
+
+- For branch `main`use the three subfolders under `COMP3340-GP10-FewShowLearning/FSL_branch_main`:
+```
+FSL_main_branch
+| |____data
+| |____output
+| |____test_output
+| |____ ...
+```
+
+For branch `add-flower-dataset-jx` use the three subfolders under `COMP3340-GP10-FewShowLearning/FSL_branch_add_flower_dataset_jx`:
+```
+FSL-add-flower-dataset-jx
+| |____data 
+| |____output 
+| |____test_output 
+| |____ ...
+```
+
+
+---
 
 ## Commands to reproduce results<a id="cmd_repro"/>
 
+- To reproduce the results presented in the midterm report, please use the code and data in the `main` branch.
+- To explore the performance of support-set|query-set split and meta-testing, please use the code and data in the `add-flower-dataset-jx` branch.
+
 ### Reproduce midterm report results
-Reproduce midterm report Section XX
+- Reproduce midterm report Table 3
+  - ![Group 10 midterm report Table 3](./figures/FSL_midterm_report_Table3.png)
+  - To avoid training the model (takes 6-7 hours on a single GPU), you can simply check the logs under ./output
 
-### Train model command
+- Reproduce midterm report Table 5
+  - ![Group 10 midterm report Table 5](./figures/FSL_midterm_appendix_Table5.png)
+  - To avoid running the testing (takes several hours on a single GPU), you can simply check the logs under ./test_output
+
+- If you insist to train and test the FSL models, you can refer to example commands listed in [the following section](aft_midterm).
 
 
 
+### Exploration after midterm<a id="aft_midterm"/>
+- Note: we did not include addtional results in the presentation since we do not have enough time.
+- Please make sure that you using code and data in the `add-flower-dataset-jx` branch.
+
+#### Example commands for experiments
+
+- Example train command:
 ```
 python ./tools/classification/train.py \
-./configs/classification/maml/flower/maml_conv4_1xb105_flower_5way-1shot.py \
---work-dir ./output/maml_conv4_1xb105_flower_5way-1shot_meta-test
+    ./configs/classification/baseline_plus/flower/baseline-plus_conv4_1xb64_flower_5way-1shot.py \
+    --work-dir ./output/baseline-plus_conv4_1xb64_flower_5way-1shot_meta-test \
+    --gpu-id 0
+```
+
+- Example test command:
+```
+python ./tools/classification/scripts/meta_test/flower_meta_test.py \
+--config-fn flower_meta-test_5way-1shot \
+--ckpt-fn baseline_conv4_1xb64_flower_5way-1shot \
+--ckpt-choice best_accuracy_mean
+```
+
+#### Example bash scripts for experiments
+- Bash script for training:
+```
+source tools/classification/scripts/train/flower_baseline.sh
+source tools/classification/scripts/train/flower_baseline-plus.sh
+source tools/classification/scripts/train/flower_maml.sh
+source tools/classification/scripts/train/flower_proto-net.sh
+```
+
+- Bash script for testing:
+```
+source tools/classification/scripts/meta_test/flower_meta_test_all.sh
+```
+
+#### Example python scripts for processing results
+
+- Python scripts for generating train and test results
+```
+python tools/classification/scripts/eval/eval_val_acc.py
+python tools/classification/scripts/eval/eval_meta_test.py
 ```
 
 
-
----  
-
-
+---
 
 ## MMFewShot Official Readme and Citation
 
-Please also refer to [MMFewShot Official Readme](https://github.com/COMP3340-2024-GP11/MMFewShot_Flower_Classification/tree/add-flower-dataset-jx).
+Please also refer to [MMFewShot Official Documentation](https://mmfewshot.readthedocs.io/en/latest/) if you have any doubts.
 
 If you find this project useful in your research, please consider cite:
 
